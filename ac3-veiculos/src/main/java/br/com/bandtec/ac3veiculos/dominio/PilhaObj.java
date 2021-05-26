@@ -1,4 +1,4 @@
-package br.com.bandtec.ac3veiculos.model;
+package br.com.bandtec.ac3veiculos.dominio;
 
 public class PilhaObj <T>{
     private int topo;		/* índice do topo da pilha */

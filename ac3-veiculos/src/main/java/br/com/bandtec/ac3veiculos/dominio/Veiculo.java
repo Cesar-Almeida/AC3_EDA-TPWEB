@@ -1,8 +1,6 @@
-package br.com.bandtec.ac3veiculos.model;
+package br.com.bandtec.ac3veiculos.dominio;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -34,23 +32,7 @@ public class Veiculo {
     private int ano;
 
     @Positive
-    private double kilometragem;
-
-    public Veiculo(String chassi, @Positive int rodas, @Positive double tanqueLitros,
-                   @NotNull @NotBlank String modelo, @NotBlank String marca,
-                   @Positive int ano, @Positive double kilometragem) {
-        this.chassi = chassi;
-        this.rodas = rodas;
-        this.tanqueLitros = tanqueLitros;
-        this.modelo = modelo;
-        this.marca = marca;
-        this.ano = ano;
-        this.kilometragem = kilometragem;
-    }
-
-    public Veiculo() {
-
-    }
+    private double quilometragem;
 
     public String getChassi() {
         return chassi;
@@ -100,12 +82,12 @@ public class Veiculo {
         this.ano = ano;
     }
 
-    public double getKilometragem() {
-        return kilometragem;
+    public double getQuilometragem() {
+        return quilometragem;
     }
 
-    public void setKilometragem(double kilometragem) {
-        this.kilometragem = kilometragem;
+    public void setQuilometragem(double kilometragem) {
+        this.quilometragem = kilometragem;
     }
 }
 
