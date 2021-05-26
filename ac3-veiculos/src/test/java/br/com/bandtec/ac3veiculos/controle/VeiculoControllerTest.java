@@ -82,7 +82,7 @@ class VeiculoControllerTest {
 
     @Test
     @DisplayName("GET /veiculos/{chassi} -> Traz o veículo específico")
-    void getVeiculoPorId() {
+    void getVeiculoPorChassi() {
         List<Veiculo> testeVeiculo = Arrays.asList(new Veiculo(), new Veiculo(), new Veiculo());
 
         Mockito.when(repository.findById("1odjksi1"));
@@ -94,7 +94,7 @@ class VeiculoControllerTest {
 
     @Test
     @DisplayName("GET /veiculos/{chassi} -> Traz o veículo específico")
-    void getVeiculoPorIdInvalido() {
+    void getVeiculoPorChassiInvalido() {
         List<Veiculo> testeVeiculo = Arrays.asList(new Veiculo(), new Veiculo(), new Veiculo());
 
         Mockito.when(repository.findById(1));
@@ -104,14 +104,27 @@ class VeiculoControllerTest {
         assertEquals(400, resposta.getStatusCodeValue());
     }
 
-//    @Test
-//    void deleteVeiculo() {
-//        List<Veiculo> testeVeiculo = Arrays.asList(new Veiculo(), new Veiculo(), new Veiculo());
-//
-//        Mockito.when(repository.deleteAll();
-//
-//        ResponseEntity resposta = controller.getVeiculo();
-//
-//        assertEquals(200, resposta.getStatusCodeValue());
-//    }
+    @Test
+    @DisplayName("DELETE /veiculos/{chassi} -> Apaga veiculo")
+    void deleteVeiculo() {
+        List<Veiculo> testeVeiculo = Arrays.asList(new Veiculo(), new Veiculo(), new Veiculo());
+
+        Mockito.when(repository.deleteById("1");
+
+        ResponseEntity resposta = controller.getVeiculo();
+
+        assertEquals(200, resposta.getStatusCodeValue());
+    }
+
+    @Test
+    @DisplayName("DELETE /veiculos/{chassi} -> Apaga veiculo")
+    void deleteVeiculoInexistente() {
+        List<Veiculo> testeVeiculo = Arrays.asList(new Veiculo(), new Veiculo(), new Veiculo());
+
+        Mockito.when(repository.deleteById("3dyerfrgersusfd");
+
+        ResponseEntity resposta = controller.getVeiculo();
+
+        assertEquals(200, resposta.getStatusCodeValue());
+    }
 }
