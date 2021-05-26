@@ -19,4 +19,4 @@ Esse projeto é construido para cadastro de veículos e garagens, trabalhando co
 - [Veículo](https://geradorbrasileiro.com/veiculo.html)
 
 ---
-Desenvolvido pela ©UpLineInvest
+Desenvolvido com empenho
