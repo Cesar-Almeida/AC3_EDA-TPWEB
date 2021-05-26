@@ -1,16 +1,15 @@
 package br.com.bandtec.ac3veiculos.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Garagem {
@@ -23,11 +22,23 @@ public class Garagem {
     @Size(min = 2, max = 40)
     private String dono;
 
-    @NotNull
-    private Integer vaga;
+//    @NotNull
+//    @Positive
+//    private Integer vaga;
 
     @NotNull
     private Boolean coberta;
+
+    @OneToMany(mappedBy = "vaga")
+    private List<Veiculo> veiculos;
+
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
+    public void setVeiculos(List<Veiculo> veiculos) {
+        this.veiculos = veiculos;
+    }
 
     public Integer getId() {
         return id;
@@ -45,13 +56,13 @@ public class Garagem {
         this.dono = dono;
     }
 
-    public Integer getVaga() {
-        return vaga;
-    }
-
-    public void setVaga(Integer vaga) {
-        this.vaga = vaga;
-    }
+//    public Integer getVaga() {
+//        return vaga;
+//    }
+//
+//    public void setVaga(Integer vaga) {
+//        this.vaga = vaga;
+//    }
 
     public Boolean getCoberta() {
         return coberta;

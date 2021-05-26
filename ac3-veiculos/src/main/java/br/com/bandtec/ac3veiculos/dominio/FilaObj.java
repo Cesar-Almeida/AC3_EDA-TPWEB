@@ -1,5 +1,7 @@
 package br.com.bandtec.ac3veiculos.dominio;
 
+import java.util.List;
+
 // Representa uma fila de objetos de tipo genérico
 public class FilaObj<T> {
 

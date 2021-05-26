@@ -1,10 +1,12 @@
 package br.com.bandtec.ac3veiculos.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.http.ResponseEntity;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @Entity
 public class Veiculo {
@@ -33,6 +35,17 @@ public class Veiculo {
 
     @Positive
     private double quilometragem;
+
+    @ManyToOne
+    private Garagem vaga;
+
+    public Garagem getVaga() {
+        return vaga;
+    }
+
+    public void setVaga(Garagem vaga) {
+        this.vaga = vaga;
+    }
 
     public String getChassi() {
         return chassi;
