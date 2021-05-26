@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/veiculos")
@@ -44,6 +43,16 @@ public class VeiculoController {
             return ResponseEntity.status(404).build();
         }
     }
+
+//    @PutMapping("/{chassi}")
+//    public String putPokemon(@PathVariable String chassi, @RequestBody Veiculo veiculoAlterado) {
+//        if (repository.existsById(chassi)) {
+//            return repository.save(chassi, veiculoAlterado)
+//        } else {
+//            return "Veiculo não encontrado";
+//        }
+//    }
+
 //    @GetMapping
 //    public ResponseEntity getVeiculos() {
 //        return ResponseEntity.status(200).body(

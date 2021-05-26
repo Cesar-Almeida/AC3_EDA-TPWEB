@@ -37,6 +37,7 @@ public class Veiculo {
     private double quilometragem;
 
     @ManyToOne
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Garagem vaga;
 
     public Garagem getVaga() {
