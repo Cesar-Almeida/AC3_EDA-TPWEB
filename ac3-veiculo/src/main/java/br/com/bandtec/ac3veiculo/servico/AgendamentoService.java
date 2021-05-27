@@ -10,9 +10,17 @@ public class AgendamentoService {
     @Autowired
     private VeiculoRepository repository;
 
-    @Scheduled(initialDelay = 1000, fixedRate = 3000)
-    public void filosofar() {
+    @Scheduled(initialDelay = 1000, fixedRate = 3000000)
+    public void tema() {
 //        System.out.println(repository.findAll());
-        System.out.println("Não desista até conseguir 8");
+        System.out.println(
+          " ##   ##             ##                        ###                               ####   ##   ##    ##\n" +
+          " ##   ##                                        ##                              ##  ##  ### ###   ####\n" +
+          "  ## ##    ####     ###      ####    ##  ##     ##      ####     #####         ##       #######  ##  ##\n" +
+          "  ## ##   ##  ##     ##     ##  ##   ##  ##     ##     ##  ##   ##             ##       #######  ##  ##\n" +
+          "   ###    ######     ##     ##       ##  ##     ##     ##  ##    #####         ##       ## # ##  ######\n" +
+          "   ###    ##         ##     ##  ##   ##  ##     ##     ##  ##        ##         ##  ##  ##   ##  ##  ##\n" +
+          "    #      #####    ####     ####     ######   ####     ####    ######           ####   ##   ##  ##  ##\n" +
+                "\n");
     }
 }
