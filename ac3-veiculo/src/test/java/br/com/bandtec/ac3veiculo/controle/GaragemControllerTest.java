@@ -62,16 +62,15 @@ class GaragemControllerTest {
         assertEquals(200, resposta.getStatusCodeValue());
     }
 
-//    @Test
-//    @DisplayName("GET /garagens/listar -> Lista de garagens")
-//    void getGaragemSemRegistro() {
-//        Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
-//
-//        ResponseEntity resposta = controller.getGaragem();
-//
-//        assertEquals(204, resposta.getStatusCodeValue());
-//        assertNull(resposta.getBody());
-//    }
+    @Test
+    @DisplayName("GET /garagens/listar -> Lista vazia")
+    void getGaragemSemRegistro() {
+        Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
+
+        ResponseEntity resposta = controller.getGaragem();
+
+        assertEquals(200, resposta.getStatusCodeValue());
+    }
 
     @Test
     @DisplayName("GET /garagens/{id} -> Traz uma garagem específica")
@@ -80,43 +79,46 @@ class GaragemControllerTest {
 
         Mockito.when(repository.findById(1));
 
+        ResponseEntity resposta = controller.getGaragemPorId(1);
+
+        assertEquals(200, resposta.getStatusCodeValue());
+    }
+
+    @Test
+    @DisplayName("GET /garagens/{id} -> Traz uma garagem específica")
+    void getGaragemPorIdInexistente() {
+        List<Garagem> testeGaragem = Arrays.asList(new Garagem(), new Garagem(), new Garagem());
+
+        Mockito.when(repository.findById(1));
+
+        ResponseEntity resposta = controller.getGaragemPorId(8);
+
+        assertEquals(200, resposta.getStatusCodeValue());
+    }
+
+    @Test
+    @DisplayName("DELETE /garagens/{id} -> Apaga veiculo")
+    void deleteGaragem() {
+        List<Garagem> testeGaragem = Arrays.asList(new Garagem(), new Garagem(), new Garagem());
+
+        Mockito.when(repository.existsById(1));
+        repository.deleteById(1);
+
         ResponseEntity resposta = controller.getGaragem();
 
         assertEquals(200, resposta.getStatusCodeValue());
     }
 
-//    @Test
-//    @DisplayName("GET /garagens/{id} -> Traz uma garagem específica")
-//    void getGaragemPorIdInexistente() {
-//        Mockito.when(repository.findAll()).thenReturn(new ArrayList<>());
-//
-//        ResponseEntity resposta = controller.getGaragem();
-//
-//        assertEquals(204, resposta.getStatusCodeValue());
-//        assertNull(resposta.getBody());
-//    }
+    @Test
+    @DisplayName("DELETE /garagens/{id} -> Apaga veiculo")
+    void deleteGaragemInexistente() {
+        List<Garagem> testeGaragem = Arrays.asList(new Garagem(), new Garagem(), new Garagem());
 
-//    @Test
-//    @DisplayName("DELETE /garagens/{id} -> Apaga veiculo")
-//    void deleteGaragem() {
-//        List<Garagem> testeGaragem = Arrays.asList(new Garagem(), new Garagem(), new Garagem());
-//
-//        Mockito.when(repository.deleteById(1);
-//
-//        ResponseEntity resposta = controller.getGaragem();
-//
-//        assertEquals(200, resposta.getStatusCodeValue());
-//    }
-//
-//    @Test
-//    @DisplayName("DELETE /garagens/{id} -> Apaga veiculo")
-//    void deleteGaragemInexistente() {
-//        List<Garagem> testeGaragem = Arrays.asList(new Garagem(), new Garagem(), new Garagem());
-//
-//        Mockito.when(repository.deleteById(5);
-//
-//        ResponseEntity resposta = controller.getGaragem();
-//
-//        assertEquals(204, resposta.getStatusCodeValue());
-//    }
+        Mockito.when(repository.existsById(5));
+        repository.deleteById(5);
+
+        ResponseEntity resposta = controller.getGaragem();
+
+        assertEquals(204, resposta.getStatusCodeValue());
+    }
 }
