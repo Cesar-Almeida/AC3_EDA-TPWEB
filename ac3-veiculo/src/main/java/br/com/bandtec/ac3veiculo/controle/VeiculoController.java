@@ -21,14 +21,14 @@ public class VeiculoController {
     private GaragemRepository repositoryGaragem;
 
     @PostMapping("/cadastro")
-    public ResponseEntity<List<Veiculo>> postVeiculo(@RequestBody @Valid Veiculo novoVeiculo){
+    public ResponseEntity<List<Veiculo>> postVeiculo(@RequestBody @Valid Veiculo novoVeiculo) {
 //        novoVeiculo.setVaga(repository.existsById(novoVeiculo.getVaga().getId());
         repository.save(novoVeiculo);
         return ResponseEntity.status(201).build();
     }
 
     @GetMapping("/listar")
-    public ResponseEntity getVeiculo(){
+    public ResponseEntity getVeiculo() {
         return ResponseEntity.status(200).body(repository.findAll());
     }
 
@@ -43,7 +43,7 @@ public class VeiculoController {
         if (repository.existsById(chassi)) {
             repository.deleteById(chassi);
             return ResponseEntity.status(200).build();
-        }else {
+        } else {
             return ResponseEntity.status(404).build();
         }
     }

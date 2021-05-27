@@ -14,15 +14,15 @@ import java.util.Optional;
 public class GaragemController {
     @Autowired
     private GaragemRepository repository;
-    
+
     @PostMapping("/cadastro")
-    public ResponseEntity postGaragem(@RequestBody @Valid Garagem novaGaragem){
+    public ResponseEntity postGaragem(@RequestBody @Valid Garagem novaGaragem) {
         repository.save(novaGaragem);
         return ResponseEntity.status(201).build();
     }
 
     @GetMapping("/listar")
-    public ResponseEntity getGaragem(){
+    public ResponseEntity getGaragem() {
         return ResponseEntity.status(200).body(repository.findAll());
     }
 
@@ -37,7 +37,7 @@ public class GaragemController {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return ResponseEntity.status(200).build();
-        }else {
+        } else {
             return ResponseEntity.status(404).build();
         }
     }

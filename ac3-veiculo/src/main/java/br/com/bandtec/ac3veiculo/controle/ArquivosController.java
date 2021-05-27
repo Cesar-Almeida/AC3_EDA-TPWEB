@@ -56,7 +56,7 @@ public class ArquivosController {
         Anexo novoAnexo = new Anexo();
         novoAnexo.setNomeArquivo(arquivo.getOriginalFilename());
         novoAnexo.setConteudoArquivo(arquivo.getBytes());
-        novoAnexo.setTipoArquivo(arquivo.getContentType() );
+        novoAnexo.setTipoArquivo(arquivo.getContentType());
 
         repository.save(novoAnexo);
 
@@ -66,13 +66,13 @@ public class ArquivosController {
     @GetMapping("/{id}")
     public ResponseEntity getArquivo(@PathVariable int id) {
         Optional<Anexo> anexoOptional = repository.findById(id);
-        if (anexoOptional.isPresent()){
+        if (anexoOptional.isPresent()) {
             Anexo anexo = anexoOptional.get();
 
             return ResponseEntity.status(200).header("content-type", anexo.getTipoArquivo())
-                    .header("content-disposition", "filename="+anexo.getNomeArquivo())
+                    .header("content-disposition", "filename=" + anexo.getNomeArquivo())
                     .body(anexo.getConteudoArquivo());
-        }else {
+        } else {
             return ResponseEntity.status(404).build();
         }
     }

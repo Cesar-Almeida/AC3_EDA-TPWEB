@@ -12,8 +12,8 @@ public class LeArquivo {
         String tipoRegistro;
         String curso, chassi, tanque, rodas, quilometragem, ano, marca, modelo;
         String id, dono, vaga, coberta, entradaV;
-        int contRegistro=0;
-        int contRegistro2=0;
+        int contRegistro = 0;
+        int contRegistro2 = 0;
 
         // Abre o arquivo
         try {
@@ -35,53 +35,48 @@ public class LeArquivo {
                     System.out.println("Header");
                     System.out.println("Tipo de arquivo: " + registro.substring(2, 9));
                     System.out.println("Chassi: " + registro.substring(9, 26));
-                    System.out.println("Data/hora de geração do arquivo: " + registro.substring(26,45));
-                    System.out.println("Versão do layout: " + registro.substring(45,47));
-                }
-                else if (tipoRegistro.equals("01")) {
+                    System.out.println("Data/hora de geração do arquivo: " + registro.substring(26, 45));
+                    System.out.println("Versão do layout: " + registro.substring(45, 47));
+                } else if (tipoRegistro.equals("01")) {
                     System.out.println("\nTrailer");
-                    int qtdRegistro = Integer.parseInt(registro.substring(2,12));
+                    int qtdRegistro = Integer.parseInt(registro.substring(2, 12));
                     if (qtdRegistro == contRegistro) {
                         System.out.println("Quantidade de registros gravados compatível com quantidade lida");
-                    }
-                    else {
+                    } else {
                         System.out.println("Quantidade de registros gravados não confere com quantidade lida");
                     }
-                }
-                else if (tipoRegistro.equals("02")) {
+                } else if (tipoRegistro.equals("02")) {
                     if (contRegistro == 0) {
                         System.out.println();
-                        System.out.printf("%-17s %-2s %-3s %-60s %15s %4s %5s\n", "CHASSI","RODAS","TANQUE",
+                        System.out.printf("%-17s %-2s %-3s %-60s %15s %4s %5s\n", "CHASSI", "RODAS", "TANQUE",
                                 "MODELO", "MARCA", "ANO", "QULIOMETRAGEM");
                     }
 
-                    chassi = registro.substring(2,19).trim();
-                    rodas = registro.substring(19,21).trim();
-                    tanque = registro.substring(21,24).trim();
-                    modelo = registro.substring(24,84).trim();
-                    marca = registro.substring(84,99).trim();
-                    ano = registro.substring(99,103).trim();
-                    quilometragem = registro.substring( 103,108).trim();
+                    chassi = registro.substring(2, 19).trim();
+                    rodas = registro.substring(19, 21).trim();
+                    tanque = registro.substring(21, 24).trim();
+                    modelo = registro.substring(24, 84).trim();
+                    marca = registro.substring(84, 99).trim();
+                    ano = registro.substring(99, 103).trim();
+                    quilometragem = registro.substring(103, 108).trim();
 
                     System.out.printf("%-17s %-5s %-6s %-60s %15s %4s %5s\n", chassi, rodas, tanque, modelo,
                             marca, ano, quilometragem);
                     contRegistro++;
-                }
-                else if (tipoRegistro.equals("03")) {
+                } else if (tipoRegistro.equals("03")) {
                     if (contRegistro2 == 0) {
                         System.out.println();
-                        System.out.printf("%-5s %-40s %-2s %-5s\n", "ID","DONO","VAGA","COBERTA");
+                        System.out.printf("%-5s %-40s %-2s %-5s\n", "ID", "DONO", "VAGA", "COBERTA");
                     }
 
-                    id = registro.substring(2,7).trim();
-                    dono = registro.substring(7,47).trim();
-                    vaga = registro.substring(47,49).trim();
-                    coberta = registro.substring(49,54).trim();
+                    id = registro.substring(2, 7).trim();
+                    dono = registro.substring(7, 47).trim();
+                    vaga = registro.substring(47, 49).trim();
+                    coberta = registro.substring(49, 54).trim();
 
                     System.out.printf("%-5s %-41s %-3s %-6s\n", id, dono, vaga, coberta);
                     contRegistro2++;
-                }
-                else {
+                } else {
                     System.out.println("Tipo de registro inválido");
                 }
 

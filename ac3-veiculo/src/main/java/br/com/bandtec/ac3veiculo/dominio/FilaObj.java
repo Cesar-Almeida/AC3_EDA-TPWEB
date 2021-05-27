@@ -26,8 +26,7 @@ public class FilaObj<T> {
     public void insert(T info) {
         if (isFull()) {                            // Se fila está cheia
             System.out.println("Fila cheia");    // exibe mensagem
-        }
-        else {
+        } else {
             // senão, insere info na fila, índice tamanho, e incrementa tamanho
             fila[tamanho++] = info;
         }

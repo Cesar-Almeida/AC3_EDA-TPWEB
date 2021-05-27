@@ -1,13 +1,13 @@
 package br.com.bandtec.ac3veiculo.dominio;
 
-public class PilhaObj <T>{
-    private int topo;		/* índice do topo da pilha */
-    private T[] pilha;	/* vetor que representa a pilha */
+public class PilhaObj<T> {
+    private int topo;        /* índice do topo da pilha */
+    private T[] pilha;    /* vetor que representa a pilha */
 
     /* Construtor - recebe a capacidade da pilha */
     public PilhaObj(int capacidade) {
-        topo = -1;				                /* inicializa topo com -1 */
-        pilha = (T[]) new Object[capacidade];	/* cria o vetor da pilha */
+        topo = -1;                                /* inicializa topo com -1 */
+        pilha = (T[]) new Object[capacidade];    /* cria o vetor da pilha */
     }
 
     /* Método isEmpty() - devolve true se a pilha está vazia
@@ -45,8 +45,7 @@ public class PilhaObj <T>{
 			topo++;
 			pilha[topo] = info;
 			*/
-        }
-        else {		/* pilha cheia */
+        } else {        /* pilha cheia */
             System.out.println("Pilha cheia");
         }
     }
@@ -70,7 +69,7 @@ public class PilhaObj <T>{
 
     /* Método peek - Retorna o elemento do topo da pilha */
     public T peek() {
-        if(!isEmpty()) {
+        if (!isEmpty()) {
             return pilha[topo];
         }
         return null;
@@ -78,20 +77,15 @@ public class PilhaObj <T>{
 
     /* Método exibe - Exibe os elementos da pilha */
     public void exibe() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             System.out.println("Pilha vazia");
-        }
-        else {
-            for(int i = 0; i <= topo; i++) {
+        } else {
+            for (int i = 0; i <= topo; i++) {
                 System.out.println(pilha[i]);
             }
         }
 
     }
-
-
-
-
 
 
 }

@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class GravaArquivo {
 
-    public static void gravaRegistro (String nomeArq, String registro) {
+    public static void gravaRegistro(String nomeArq, String registro) {
         BufferedWriter saida = null;
         try {
             // o argumento true é para indicar que o arquivo não será sobrescrito e sim
@@ -26,7 +26,6 @@ public class GravaArquivo {
             System.err.printf("Erro ao gravar arquivo: %s.\n", e.getMessage());
         }
     }
-
 
 
     public static void main(String[] args) {
@@ -66,7 +65,7 @@ public class GravaArquivo {
         corpo += String.format("%5s", "30218"); // veiculo.getQuilometragem()
         // incrementa o contador de registros de dados
         contRegDados++;
-        gravaRegistro(nomeArq,corpo);
+        gravaRegistro(nomeArq, corpo);
         // chama o método para gravar um registro
         // 1o registro de dados
         corpo2 += "03";
@@ -80,12 +79,12 @@ public class GravaArquivo {
 
         // incrementa o contador de registros de dados
         contRegDados2++;
-        gravaRegistro(nomeArq,corpo2);
+        gravaRegistro(nomeArq, corpo2);
 
         // monta o trailer
         trailer += "01";
         trailer += String.format("%010d", contRegDados);
-        gravaRegistro(nomeArq,trailer);
+        gravaRegistro(nomeArq, trailer);
     }
 
 }
