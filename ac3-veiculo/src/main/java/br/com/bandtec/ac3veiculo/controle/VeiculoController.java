@@ -1,5 +1,7 @@
 package br.com.bandtec.ac3veiculo.controle;
 
+import br.com.bandtec.ac3veiculo.dominio.Desfazer;
+import br.com.bandtec.ac3veiculo.dominio.PilhaObj;
 import br.com.bandtec.ac3veiculo.dominio.Veiculo;
 import br.com.bandtec.ac3veiculo.repositorio.GaragemRepository;
 import br.com.bandtec.ac3veiculo.repositorio.VeiculoRepository;
@@ -20,11 +22,32 @@ public class VeiculoController {
     @Autowired
     private GaragemRepository repositoryGaragem;
 
+    PilhaObj<Desfazer> novoDesfazer = new PilhaObj<>(1);
+
     @PostMapping("/cadastro")
     public ResponseEntity<List<Veiculo>> postVeiculo(@RequestBody @Valid Veiculo novoVeiculo) {
 //        novoVeiculo.setVaga(repository.existsById(novoVeiculo.getVaga().getId());
+
+        novoDesfazer.push(new Desfazer("POST",novoVeiculo));
+        novoDesfazer.exibe();
         repository.save(novoVeiculo);
         return ResponseEntity.status(201).build();
+    }
+
+    @PostMapping("/desfazer")
+    public ResponseEntity postDesfazer() {
+        if (novoDesfazer.isEmpty()){
+            return ResponseEntity.status(202).body("Não há ação para ser desfeita");
+        }
+        Desfazer desfazer = novoDesfazer.pop();
+        if (desfazer.getMetodo().equals("POST")) {
+            repository.delete((Veiculo)desfazer.getPilhaDesfazer());
+            return ResponseEntity.status(200).body("Veículo deletado do banco");
+        } else {
+            repository.save((Veiculo)desfazer.getPilhaDesfazer());
+            return ResponseEntity.status(201).body("Veículo reinserido no banco ");
+        }
+
     }
 
     @GetMapping("/listar")
@@ -41,6 +64,7 @@ public class VeiculoController {
     @DeleteMapping("/{chassi}")
     public ResponseEntity deleteVeiculo(@PathVariable String chassi) {
         if (repository.existsById(chassi)) {
+//            novoDesfazer.push(new Desfazer("DELETE", repository.findById(chassi)));
             repository.deleteById(chassi);
             return ResponseEntity.status(200).build();
         } else {
